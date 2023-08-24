@@ -11,6 +11,9 @@ def main():
 
             print(problem.name)
 
+            if not os.path.exists(os.path.join(output)):
+                os.mkdir(os.path.join(output))
+
             export(problem, os.path.join(output, problem.name))
 
 
