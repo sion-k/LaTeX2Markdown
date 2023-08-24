@@ -4,6 +4,7 @@ from solution import Solution
 from typing import Tuple, Dict
 import os
 import json
+import re
 
 
 class Problem:
@@ -32,7 +33,7 @@ class Problem:
 
         for root, dirs, files in os.walk(image_path):
             for file in files:
-                if file.endswith(".png"):
+                if re.match(r'.+\.(png|jpg|jpeg|gif)', file):
                     images[file] = os.path.join(root, file)
 
         tests_path = os.path.join(path, 'tests')

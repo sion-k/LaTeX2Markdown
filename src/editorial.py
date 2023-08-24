@@ -24,7 +24,7 @@ def abstract(problem: Problem):
     difficulty = difficulty[0].upper() + difficulty[1:]
 
     notes = '\n\t\t'.join(
-        f'\\item {note}' for note in problem.statement.notes.split('\r\n'))
+        f'\\item {note}' for note in problem.statement.notes.strip().split('\r\n') if note)
 
     return abstract_template.format(title=problem.statement.name, tags=tags, ac_color=ac_color,
                                     difficulty=difficulty, notes=notes)
@@ -72,7 +72,7 @@ tutorial_template = '''\\begin{{frame}}{{{title} 풀이}}
 
 def tutorial(problem: Problem):
     items = '\n\t\t'.join(
-        f'\\item {note}' for note in problem.statement.tutorial.split('\r\n'))
+        f'\\item {note}' for note in problem.statement.tutorial.strip().split('\r\n') if note)
 
     return tutorial_template.format(title=problem.statement.name,
                                     tutorial=items)
@@ -99,7 +99,7 @@ def set_image_prefix(problem: Problem):
 
     pattern = r'\\includegraphics\{(.+?)\.png\}'
     replace_pattern = r'\\includegraphics[width=\\textwidth]{{images/' + \
-        problem.name + r'/\1.png}}'
+        problem.name + r'/\1}}'
 
     statement.legend = re.sub(pattern, replace_pattern, statement.legend)
     statement.input = re.sub(pattern, replace_pattern, statement.input)
