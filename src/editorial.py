@@ -98,8 +98,8 @@ def set_image_prefix(problem: Problem):
     statement = problem.statement
 
     pattern = r'\\includegraphics\{(.+?)\.png\}'
-    replace_pattern = r'\\includegraphics[width=\\textwidth]{{images/' + \
-        problem.name + r'/\1}}'
+    replace_pattern = r'\\includegraphics[width=\\textwidth]{images/' + \
+        problem.name + r'/\1}'
 
     statement.legend = re.sub(pattern, replace_pattern, statement.legend)
     statement.input = re.sub(pattern, replace_pattern, statement.input)

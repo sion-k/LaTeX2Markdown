@@ -15,3 +15,14 @@ def export_tests(problem: Problem, path: str):
 
         shutil.copy(output_file_path, os.path.join(
             path, f"{output_file_name}.out.txt"))
+
+        # CRLF to LF
+        with open(os.path.join(path, f"{input_file_name}.in.txt"), 'r', encoding='utf-8') as f:
+            input_text = f.read()
+            with open(os.path.join(path, f"{input_file_name}.in.txt"), 'w', newline='\n', encoding='utf-8') as f:
+                f.write(input_text)
+
+        with open(os.path.join(path, f"{output_file_name}.out.txt"), 'r', encoding='utf-8') as f:
+            output_text = f.read()
+            with open(os.path.join(path, f"{output_file_name}.out.txt"), 'w', newline='\n', encoding='utf-8') as f:
+                f.write(output_text)

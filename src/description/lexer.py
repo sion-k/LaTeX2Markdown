@@ -43,7 +43,7 @@ def t_ITALIC(t):
 
 
 def t_MONOSPACE(t):
-    r"(\\texttt)|(\\t)"
+    r"\\texttt"
     return t
 
 
